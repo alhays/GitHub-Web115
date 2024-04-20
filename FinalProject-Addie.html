@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WEB-115 Final Project</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div class="banner">
+            <h1>WEB-115 Final Project</h1>
+            <p>Created by Addie Hays</p>
+            <p>Course: WEB-115 | Section: 0004</p>
+            <h2>Build Your Meal Plan</h2>
+        </div>
+    </header>
+    <main>
+        <form id="mealPlanForm">
+            <!-- Personal Information -->
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name" required><br><br>
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" required><br><br>
+            <label for="goal">Goal for the week:</label>
+            <input type="text" id="goal" name="goal"><br><br>
+            
+            <!-- Meal Input -->
+            <label for="breakfast">Breakfast:</label>
+            <input type="text" id="breakfast" name="breakfast"><br><br>
+            <label for="snack1">Snack:</label>
+            <input type="text" id="snack1" name="snack1"><br><br>
+            <label for="lunch">Lunch:</label>
+            <input type="text" id="lunch" name="lunch"><br><br>
+            <label for="snack2">Snack:</label>
+            <input type="text" id="snack2" name="snack2"><br><br>
+            <label for="dinner">Dinner:</label>
+            <input type="text" id="dinner" name="dinner"><br><br>
+            
+            
+            <button type="button" onclick="generateMealPlan()">Generate Meal Plan</button>
+            <button type="button" onclick="clearForm()">Clear Planner</button>
+        </form>
+    </main>
+    <footer>
+        
+    </footer>
+    <script src="projectJS.js"></script>
+</body>
+</html>
