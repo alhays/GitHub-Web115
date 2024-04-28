@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Amortization Calculator</title>
+</head>
+<body>
+    <h1>Amortization Calculator</h1>
+    <p>Name: [Addie Hays]</p>
+    <p>Email: [alhaysbusse@my.waketech.edu]</p>
+    <p>Date: [03/18/2024]</p>
+
+    <button id="Button1">Calculate Amortization</button>
+
+    <div id="results"></div>
+
+    <script>
+        document.getElementById("Button1").addEventListener("click", function() {
+            let loanAmount = parseFloat(prompt("Enter the loan amount (without commas):"));
+            let termYears = parseInt(prompt("Enter the loan term in years (either 30 or 15):"));
+
+            if (termYears !== 15 && termYears !== 30) {
+                alert("Loan term must be either 15 or 30 years.");
+                return;
+            }
+
+            const interestRate = 5.75 / 100; // 5.75%
+            const monthlyInterestRate = interestRate / 12;
+            const termMonths = termYears * 12;
+            const monthlyPayment = (((monthlyInterestRate) * loanAmount) / (1 - Math.pow(1 + (monthlyInterestRate), (termYears * -12)))).toFixed(2);
+            const totalInterest = (monthlyPayment * termMonths) - loanAmount;
+            const totalMortgageAmount = parseFloat(loanAmount) + parseFloat(totalInterest);
+
+            let resultsHTML = "<h2>Mortgage Details</h2>";
+            resultsHTML += "<p>Mortgage Term: " + termYears + " years</p>";
+            resultsHTML += "<p>Mortgage Interest Rate: " + (interestRate * 100).toFixed(2) + "%</p>";
+            resultsHTML += "<p>Mortgage Amount: $" + loanAmount.toFixed(2) + "</p>";
+            resultsHTML += "<p>Total Interest Amount: $" + totalInterest.toFixed(2) + "</p>";
+            resultsHTML += "<p>Total Mortgage Amount: $" + totalMortgageAmount.toFixed(2) + "</p>";
+
+            resultsHTML += "<h2>Monthly Mortgage Payments</h2>";
+            resultsHTML += "<ul>";
+            let balance = totalMortgageAmount;
+            for (let i = 1; i <= termMonths; i++) {
+                const monthlyPaymentAmount = parseFloat(monthlyPayment);
+                resultsHTML += "<li>Month " + i + ": $" + monthlyPaymentAmount.toFixed(2) + ", Mortgage Loan Balance: $" + balance.toFixed(2) + "</li>";
+                balance -= monthlyPaymentAmount;
+                if (balance <= 0) {
+                    resultsHTML += "<li>This is the Ending Amortization Calculator...</li>";
+                    break;
+                }
+            }
+            resultsHTML += "</ul>";
+
+            document.getElementById("results").innerHTML = resultsHTML;
+        });
+    </script>
+</body>
+</html>
